@@ -3,21 +3,30 @@ require 'pry'
 
 ESPERANTO_ALPHABET = "abcĉdefgĝhĥijĵklmnoprsŝtuŭvz"
 
-# Using bubble sort
+# Thinking of using bubble sort
 # Credits: https://stackoverflow.com/questions/11091434/using-the-bubble-sort-method-for-an-array-in-ruby
 def alphabetize(arr)
   # code here
-  organized_arr = []
 
+  if arr.length == 1
+    return arr
+  end
 
-  # ESPERANTO_ALPHABET.split("").each_with_index do |esp_letter, esp_letter_index|
+  swapped = true
 
-  # end # End ESPERANTO_ALPHABET iteration
+  while swapped do
+    swapped = false
+    0.upto(arr.size-2) do |arr_index|
+      word_index = 0
 
-  arr.each do |phrase|
-    organized_arr << phrase
+      if arr[arr_index].split("")[word_index] > arr[arr_index+1].split("")[word_index]
+        arr[arr_index], arr[arr_index+1] = arr[arr_index+1], arr[arr_index]
+        swapped = true
+      elsif arr[arr_index].split("")[word_index] == arr[arr_index+1].split("")[word_index]
+        word_index += 1
+      end
+    end
+  end
 
-  end # End arr iteration
-
-  organized_arr
+  arr
 end
